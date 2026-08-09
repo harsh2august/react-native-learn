@@ -16,14 +16,11 @@ const properties = [
 ]
 export default function RootLayout() {
   return (
-    <SafeAreaView style={{
-      flex: 1,
-      backgroundColor: "#fff"
-    }}>
+    <SafeAreaView className="flex-1 bg-white py-4">
       <View style={{
         padding: 80
       }}>
-        <Text>
+        <Text className="text-4xl font-bold">
           Hi how are you.
         </Text>
         <TextInput placeholder="Search your city." placeholderTextColor={"#999"} style={{
@@ -33,13 +30,7 @@ export default function RootLayout() {
           padding: 10,
           marginTop: 12
         }} />
-        <TouchableOpacity style={{
-          backgroundColor: "#2563EB",
-          padding: 12,
-          borderRadius: 8,
-          marginTop: 8,
-          alignItems: "center"
-        }} onPress={() => alert("Searching....")}>
+        <TouchableOpacity className="bg-primary cursor-pointer p-3 rounded-lg mt-2 items-center" onPress={() => alert("Searching....")}>
           <Text style={{ color: "white", fontWeight: "bold" }}>Search</Text>
         </TouchableOpacity>
       </View>
