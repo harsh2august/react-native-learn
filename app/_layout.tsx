@@ -1,24 +1,63 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import { FlatList, Text, TextInput, TouchableOpacity, View, } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import "../global.css";
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
-
+const properties = [
+  { id: 1, title: "Harsh", city: "Noida", Price: "12 CR." },
+  { id: 2, title: "Priya", city: "Delhi", Price: "85 L." },
+  { id: 3, title: "Anil", city: "Gurgaon", Price: "2.5 CR." },
+  { id: 4, title: "Maya", city: "Mumbai", Price: "75 L." },
+  { id: 5, title: "Rohit", city: "Bangalore", Price: "3.1 CR." },
+  { id: 6, title: "Sangeeta", city: "Pune", Price: "1.2 CR." },
+  { id: 7, title: "Ajay", city: "Chennai", Price: "90 L." },
+  { id: 8, title: "Neha", city: "Hyderabad", Price: "4.5 CR." },
+  { id: 9, title: "Vikram", city: "Kolkata", Price: "65 L." },
+  { id: 10, title: "Pooja", city: "Ahmedabad", Price: "1.8 CR." }
+]
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <SafeAreaView style={{
+      flex: 1,
+      backgroundColor: "#fff"
+    }}>
+      <View style={{
+        padding: 80
+      }}>
+        <Text>
+          Hi how are you.
+        </Text>
+        <TextInput placeholder="Search your city." placeholderTextColor={"#999"} style={{
+          borderColor: "gray",
+          borderWidth: 2,
+          borderRadius: 8,
+          padding: 10,
+          marginTop: 12
+        }} />
+        <TouchableOpacity style={{
+          backgroundColor: "#2563EB",
+          padding: 12,
+          borderRadius: 8,
+          marginTop: 8,
+          alignItems: "center"
+        }} onPress={() => alert("Searching....")}>
+          <Text style={{ color: "white", fontWeight: "bold" }}>Search</Text>
+        </TouchableOpacity>
+      </View>
+      <FlatList data={properties} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => (
+        <View style={{
+          padding: 12,
+          borderBottomColor: "#ccc",
+          borderBottomWidth: 1,
+          backgroundColor: "#f9f9f9",
+          marginHorizontal: 12,
+          marginVertical: 6,
+          borderRadius: 8
+        }}>
+          <Text className="font-bold text-4xl">{item.title}</Text>
+          <Text className="text-red-600">{item.city}</Text>
+          <Text className="text-green-600 font-bold">{item.Price}</Text>
+        </View>
+      )} />
+    </SafeAreaView>
   );
 }
