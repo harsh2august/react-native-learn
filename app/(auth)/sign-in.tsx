@@ -23,7 +23,7 @@ export default function SignIn() {
 
     const codeInputRef = useRef<TextInput>(null);
 
-    const isLoading = fetchStatus === 'Fetching';
+    const isLoading = fetchStatus === 'fetching';
 
     const dismissCodeKeyboard = () => {
         Keyboard.dismiss();

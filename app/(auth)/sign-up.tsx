@@ -27,7 +27,7 @@ export default function SignUp() {
 
     const codeInputRef = useRef<TextInput>(null);
 
-    const isLoading = fetchStatus === "Fetching";
+    const isLoading = fetchStatus === "fetching";
 
     if (signUp.status === "complete" || isSignedIn) {
         return null;
