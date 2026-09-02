@@ -1,6 +1,31 @@
+import { useUserStore } from '@/store/userStore';
+import IonIcons from '@expo/vector-icons/Ionicons';
+import { Tabs } from 'expo-router';
 import { Icon, Label, NativeTabs } from 'expo-router/unstable-native-tabs';
+import { Platform } from 'react-native';
+function AndroidTabs() {
+  const isAdmin = useUserStore((state) => state.isAdmin);
+  console.log(isAdmin)
+  return (
+    <Tabs screenOptions={{ headerShown: false }}
+    >
+      <Tabs.Screen name="index" options={{ title: 'Home', tabBarIcon: ({ color, size }) => <IonIcons name="home" color={color} size={size} /> }} />
 
-export default function TabLayout() {
+      <Tabs.Screen name="search" options={{ title: 'Search', tabBarIcon: ({ color, size }) => <IonIcons name="search" color={color} size={size} /> }} />
+
+      <Tabs.Screen name="create" options={{
+        title: 'Add', href: isAdmin ? undefined : null,
+        tabBarIcon: ({ color, size }) => (<IonIcons name="add-circle" color={color} size={size} />)
+      }} />
+      <Tabs.Screen name="saved" options={{ title: 'Saved', tabBarIcon: ({ color, size }) => <IonIcons name="heart" color={color} size={size} /> }} />
+      <Tabs.Screen name="profile" options={{ title: 'Profile', tabBarIcon: ({ color, size }) => <IonIcons name="person" color={color} size={size} /> }} />
+
+    </Tabs>
+  );
+}
+function IosTabs() {
+  const isAdmin = useUserStore((state) => state.isAdmin);
+  console.log(isAdmin)
   return (
     <NativeTabs
       iconColor="#FF0000"
@@ -28,7 +53,17 @@ export default function TabLayout() {
         />
         <Label>Search</Label>
       </NativeTabs.Trigger>
-
+      {
+        isAdmin && (
+          <NativeTabs.Trigger name="create">
+            <Icon
+              sf="plus.circle.fill"
+              drawable="custom_admin_drawable"
+            />
+            <Label>Add</Label>
+          </NativeTabs.Trigger>
+        )
+      }
       <NativeTabs.Trigger name="saved">
         <Icon
           sf="heart.fill"
@@ -46,4 +81,7 @@ export default function TabLayout() {
       </NativeTabs.Trigger>
     </NativeTabs>
   );
+}
+export default function TabsLayout() {
+  return Platform.OS === 'android' ? <AndroidTabs /> : <IosTabs />;
 }
