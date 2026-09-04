@@ -1,7 +1,7 @@
 import { useUserStore } from '@/store/userStore';
 import IonIcons from '@expo/vector-icons/Ionicons';
 import { Tabs } from 'expo-router';
-import { Icon, Label, NativeTabs } from 'expo-router/unstable-native-tabs';
+import { NativeTabs } from 'expo-router/unstable-native-tabs';
 import { Platform } from 'react-native';
 function AndroidTabs() {
   const isAdmin = useUserStore((state) => state.isAdmin);
@@ -31,53 +31,53 @@ function IosTabs() {
       iconColor="#FF0000"
     >
       <NativeTabs.Trigger name="index">
-        <Icon
+        <NativeTabs.Trigger.Icon
           sf="house.fill"
           drawable="custom_android_drawable"
         />
-        <Label>Home</Label>
+        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="settings">
-        <Icon
+        <NativeTabs.Trigger.Icon
           sf="gear"
           drawable="custom_settings_drawable"
         />
-        <Label>Settings</Label>
+        <NativeTabs.Trigger.Label>Settings</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="search">
-        <Icon
+        <NativeTabs.Trigger.Icon
           sf="magnifyingglass"
           drawable="custom_search_drawable"
         />
-        <Label>Search</Label>
+        <NativeTabs.Trigger.Label>Search</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
       {
         isAdmin && (
           <NativeTabs.Trigger name="create">
-            <Icon
+            <NativeTabs.Trigger.Icon
               sf="plus.circle.fill"
               drawable="custom_admin_drawable"
             />
-            <Label>Add</Label>
+            <NativeTabs.Trigger.Label>Add</NativeTabs.Trigger.Label>
           </NativeTabs.Trigger>
         )
       }
       <NativeTabs.Trigger name="saved">
-        <Icon
+        <NativeTabs.Trigger.Icon
           sf="heart.fill"
           drawable="custom_saved_drawable"
         />
-        <Label>Saved</Label>
+        <NativeTabs.Trigger.Label>Saved</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="profile">
-        <Icon
+        <NativeTabs.Trigger.Icon
           sf="person.fill"
           drawable="custom_profile_drawable"
         />
-        <Label>Profile</Label>
+        <NativeTabs.Trigger.Label>Profile</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
     </NativeTabs>
   );
